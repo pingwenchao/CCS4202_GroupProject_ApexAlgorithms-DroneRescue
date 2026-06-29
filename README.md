@@ -1,9 +1,9 @@
 ﻿# 🚁 Apex Algorithms - Drone Rescue Scheduling System
 
-`https://img.shields.io/badge/Course-CCS4202_Design_and_Analysis_of_Algorithm-blue.svg`]()
-`https://img.shields.io/badge/Language-Java_11%2B-orange.svg`]()
+![Course](https://img.shields.io/badge/Course-CCS4202_Design_and_Analysis_of_Algorithm-blue.svg)
+![Language](https://img.shields.io/badge/Language-Java_11%2B-orange.svg)
 
-> **🌐 View Our Online Portfolio:** `https://WenchaoPing.github.io/CCS4202_GroupProject_ApexAlgorithms-DroneRescue/`
+> **🌐 View Our Online Portfolio:** `https://pingwenchao.github.io/CCS4202_GroupProject_ApexAlgorithms-DroneRescue/`
 
 This project is a Java-based simulation for solving a critical emergency resource allocation problem, formally modeled as a **0/1 Knapsack Problem**. It cross-evaluates a fast, heuristic-based **Greedy Algorithm** against a globally optimal **Dynamic Programming** solution.
 
@@ -102,3 +102,22 @@ Drone Max Payload Limit: 30 kg
     Execution Time    : 0.0362 ms
 
 ```
+
+## 🔬 Algorithm Analysis (Correctness & Complexity)
+
+### 1. Correctness Analysis
+
+**Why Greedy Fails (The Local Optimum Trap):**
+The Greedy approach selects items strictly based on the highest local density ($v_i / w_i$). In our scenario, the algorithm eagerly picked mission **M1** (Ratio = 10.0), consuming 16 kg. This left only 14 kg of capacity, locking out the highly valuable combination of **M2** (15 kg) and **M3** (15 kg). Greedy satisfies the immediate step but fails to possess an optimal substructure for the 0/1 Knapsack problem under rigid capacity boundaries, scoring only 200.
+
+**Why Dynamic Programming Succeeds (Global Optimal Guarantee):**
+DP guarantees correctness via Bellman’s Principle of Optimality. By utilizing the recurrence relation:
+`DP[i][w] = max(DP[i-1][w], DP[i-1][w-w_i] + v_i)`
+The algorithm systematically evaluates both the inclusion and exclusion of every mission across all incremental weight limits from 1 to 30. It backtracks through the 2D tabulation matrix to confidently output the absolute global maximum (Score: 270).
+
+### 2. Time & Space Complexity
+
+| Algorithm | Time Complexity | Space Complexity | Explanation |
+| --- | --- | --- | --- |
+| **Greedy Algorithm** | $O(n \log n)$ | $O(n)$ | Dominated by the Timsort mechanism used in Java's `Comparator` to sort the mission array by density ratio. |
+| **Dynamic Programming** | $O(n \cdot W)$ | $O(n \cdot W)$ | Requires nested loops to populate the 2D matrix where $n$ is the number of missions and $W$ is the max payload limit. |
