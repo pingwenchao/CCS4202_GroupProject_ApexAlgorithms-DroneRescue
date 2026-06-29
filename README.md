@@ -4,8 +4,6 @@
 ![Java](https://img.shields.io/badge/Language-Java_8%2B-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
-> **🌐 View Our Online Portfolio:** [https://pingwenchao.github.io/CCS4202_GroupProject_ApexAlgorithms-DroneRescue/](https://pingwenchao.github.io/CCS4202_GroupProject_ApexAlgorithms-DroneRescue/)
-
 This project is a Java-based simulation for solving a critical emergency resource allocation problem, formally modeled as a **0/1 Knapsack Problem**. It cross-evaluates a fast, heuristic-based **Greedy Algorithm** against a globally optimal **Dynamic Programming** solution.
 
 ## 👥 Team Members (Apex Algorithms)
